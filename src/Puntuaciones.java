@@ -36,5 +36,4 @@ public class Puntuaciones extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 	}
-//esta puta mierda es de RAUL de nuevo
 }
