@@ -13,16 +13,10 @@ public class Ajustes extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Ajustes frame = new Ajustes();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		//Crea una ventana
+		Ajustes frame = new Ajustes();
+		//La hace visible
+		frame.setVisible(true);
 	}
 
 	/**

@@ -13,16 +13,10 @@ public class Puntuaciones extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Puntuaciones frame = new Puntuaciones();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		//Crea ventana
+		Puntuaciones frame = new Puntuaciones();
+		//La hace visible
+		frame.setVisible(true);
 	}
 
 	/**
