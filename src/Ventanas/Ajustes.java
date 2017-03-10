@@ -28,10 +28,17 @@ import javax.swing.BoxLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
+import Datos.DatoAjustes;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class Ajustes extends JFrame {
 
 	private JPanel contentPane;
 
+	//Importamos configuracion guardada
+	DatoAjustes config = new DatoAjustes();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -47,7 +54,7 @@ public class Ajustes extends JFrame {
 	 */
 	public Ajustes() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, config.getrAncho(), config.getrAlto());
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -132,6 +139,14 @@ public class Ajustes extends JFrame {
 		Central.add(pieBotones);
 		
 		JButton aplicarAjustes = new JButton("Aplicar cambios");
+		aplicarAjustes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Envia nuevas configuraciones al archivo de DatosAjustes
+				config.setnNivel();
+				config.setvMusica();
+				config.setvSonido();
+			}
+		});
 		pieBotones.add(aplicarAjustes);
 		aplicarAjustes.setHorizontalAlignment(SwingConstants.LEFT);
 		

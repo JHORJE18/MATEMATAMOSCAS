@@ -41,6 +41,7 @@ public class Aplicacion {
 				System.out.println("Eleccion no valida");
 				break;
 			}
+			System.out.println("--------------------------");
 		}
 	}
 }
