@@ -31,6 +31,7 @@ import java.awt.GridLayout;
 import Datos.DatoAjustes;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JSpinner;
 
 public class Ajustes extends JFrame {
 
@@ -41,16 +42,8 @@ public class Ajustes extends JFrame {
 	JSlider sliderSonidos;
 	JSlider sliderMusica;
 	JComboBox nivelMates;
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		//Crea una ventana
-		Ajustes frame = new Ajustes();
-		//La hace visible
-		frame.setVisible(true);
-	}
+	JSpinner spinAlto;
+	JSpinner spinAncho;
 
 	/**
 	 * Create the frame.
@@ -100,6 +93,13 @@ public class Ajustes extends JFrame {
 		panelMusica.add(sliderMusica);
 		
 		JButton muteMusica = new JButton("Silenciar");
+		muteMusica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Silenciar musica
+				config.setvMusica(0);
+				recargar();
+			}
+		});
 		panelMusica.add(muteMusica);
 		
 		JPanel panelSonido = new JPanel();
@@ -117,11 +117,38 @@ public class Ajustes extends JFrame {
 		panelSonido.add(sliderSonidos);
 		
 		JButton muteSonidos = new JButton("Silenciar");
+		muteSonidos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Silenciar Sonidos
+				config.setvSonido(0);
+				recargar();
+			}
+		});
 		panelSonido.add(muteSonidos);
 		
 		JPanel panelResolucion = new JPanel();
 		panelResolucion.setBackground(Color.WHITE);
 		Central.add(panelResolucion);
+		
+		JLabel labelResolucion = new JLabel("Resolucion de pantalla");
+		panelResolucion.add(labelResolucion);
+		
+		JPanel panelMedidas = new JPanel();
+		panelResolucion.add(panelMedidas);
+		
+		JLabel labelAlto = new JLabel("Alto");
+		panelMedidas.add(labelAlto);
+		labelAlto.setLabelFor(spinAlto);
+		
+		spinAlto = new JSpinner();
+		panelMedidas.add(spinAlto);
+		
+		JLabel labelAncho = new JLabel("Ancho");
+		panelMedidas.add(labelAncho);
+		labelAncho.setLabelFor(spinAncho);
+		
+		spinAncho = new JSpinner();
+		panelMedidas.add(spinAncho);
 		
 		JPanel panelDificultad = new JPanel();
 		panelDificultad.setBackground(Color.WHITE);
@@ -147,9 +174,12 @@ public class Ajustes extends JFrame {
 		aplicarAjustes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Envia nuevas configuraciones al archivo de DatosAjustes
+				config.setrAlto((Integer) spinAlto.getValue());
+				config.setrAncho((Integer) spinAncho.getValue());
 				config.setnNivel(nivelMates.getSelectedIndex());
 				config.setvMusica(sliderMusica.getValue());
 				config.setvSonido(sliderSonidos.getValue());
+				recargar();
 			}
 		});
 		pieBotones.add(aplicarAjustes);
@@ -159,6 +189,8 @@ public class Ajustes extends JFrame {
 		defectoAjustes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Pon todo valores originales
+				config.setrAlto(320);
+				config.setrAncho(500);
 				config.setnNivel(0);
 				config.setvMusica(50);
 				config.setvSonido(50);
@@ -171,8 +203,11 @@ public class Ajustes extends JFrame {
 	}
 
 	void recargar(){
+		spinAlto.setValue(config.getrAlto());
+		spinAncho.setValue(config.getrAncho());
 		nivelMates.setSelectedIndex(config.getnNivel());
 		sliderMusica.setValue(config.getvMusica());
 		sliderSonidos.setValue(config.getvSonido());
+		setBounds(100, 100, config.getrAncho(), config.getrAlto());
 	}
 }
