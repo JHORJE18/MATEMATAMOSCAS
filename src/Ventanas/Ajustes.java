@@ -38,6 +38,9 @@ public class Ajustes extends JFrame {
 
 	//Importamos configuracion guardada
 	DatoAjustes config = new DatoAjustes();
+	JSlider sliderSonidos;
+	JSlider sliderMusica;
+	JComboBox nivelMates;
 	
 	/**
 	 * Launch the application.
@@ -89,7 +92,8 @@ public class Ajustes extends JFrame {
 		JLabel labelMusica = new JLabel("Musica");
 		panelMusica.add(labelMusica);
 		
-		JSlider sliderMusica = new JSlider();
+		 sliderMusica = new JSlider();
+		sliderMusica.setValue(25);
 		sliderMusica.setBackground(Color.WHITE);
 		labelMusica.setLabelFor(sliderMusica);
 		sliderMusica.setFont(new Font("Tekton Pro", Font.PLAIN, 12));
@@ -106,7 +110,8 @@ public class Ajustes extends JFrame {
 		labelSonidos.setBackground(Color.WHITE);
 		panelSonido.add(labelSonidos);
 		
-		JSlider sliderSonidos = new JSlider();
+		sliderSonidos = new JSlider();
+		sliderSonidos.setValue(config.getvSonido());
 		sliderSonidos.setBackground(Color.WHITE);
 		labelSonidos.setLabelFor(sliderSonidos);
 		panelSonido.add(sliderSonidos);
@@ -114,9 +119,9 @@ public class Ajustes extends JFrame {
 		JButton muteSonidos = new JButton("Silenciar");
 		panelSonido.add(muteSonidos);
 		
-		JPanel panelVacio = new JPanel();
-		panelVacio.setBackground(Color.WHITE);
-		Central.add(panelVacio);
+		JPanel panelResolucion = new JPanel();
+		panelResolucion.setBackground(Color.WHITE);
+		Central.add(panelResolucion);
 		
 		JPanel panelDificultad = new JPanel();
 		panelDificultad.setBackground(Color.WHITE);
@@ -125,10 +130,10 @@ public class Ajustes extends JFrame {
 		JLabel labelDificultad = new JLabel("Nivel de Mates");
 		panelDificultad.add(labelDificultad);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1\u00BA Primaria", "2\u00BA Primaria", "3\u00BA Primaria", "4\u00BA Primaria", "5\u00BA Primaria", "6\u00BA Primaria", "1\u00BA E.S.O"}));
-		labelDificultad.setLabelFor(comboBox);
-		panelDificultad.add(comboBox);
+		nivelMates = new JComboBox();
+		nivelMates.setModel(new DefaultComboBoxModel(new String[] {"1\u00BA Primaria", "2\u00BA Primaria", "3\u00BA Primaria", "4\u00BA Primaria", "5\u00BA Primaria", "6\u00BA Primaria", "1\u00BA E.S.O"}));
+		labelDificultad.setLabelFor(nivelMates);
+		panelDificultad.add(nivelMates);
 		
 		JPanel panelVacio2 = new JPanel();
 		panelVacio2.setBackground(Color.WHITE);
@@ -142,17 +147,32 @@ public class Ajustes extends JFrame {
 		aplicarAjustes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Envia nuevas configuraciones al archivo de DatosAjustes
-				config.setnNivel();
-				config.setvMusica();
-				config.setvSonido();
+				config.setnNivel(nivelMates.getSelectedIndex());
+				config.setvMusica(sliderMusica.getValue());
+				config.setvSonido(sliderSonidos.getValue());
 			}
 		});
 		pieBotones.add(aplicarAjustes);
 		aplicarAjustes.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		JButton defectoAjustes = new JButton("Valores predeteminados");
+		defectoAjustes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Pon todo valores originales
+				config.setnNivel(0);
+				config.setvMusica(50);
+				config.setvSonido(50);
+				recargar();
+			}
+		});
 		pieBotones.add(defectoAjustes);
 		defectoAjustes.setHorizontalAlignment(SwingConstants.LEFT);
+		recargar();
 	}
 
+	void recargar(){
+		nivelMates.setSelectedIndex(config.getnNivel());
+		sliderMusica.setValue(config.getvMusica());
+		sliderSonidos.setValue(config.getvSonido());
+	}
 }
