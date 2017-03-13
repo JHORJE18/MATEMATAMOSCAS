@@ -166,6 +166,15 @@ public class Ajustes extends JFrame {
 		panelVacio2.setBackground(Color.WHITE);
 		Central.add(panelVacio2);
 		
+		JButton volverAjustes = new JButton("Volver");
+		panelVacio2.add(volverAjustes);
+		volverAjustes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				System.exit(0);
+			}
+		});
+		
 		JPanel pieBotones = new JPanel();
 		pieBotones.setBackground(Color.WHITE);
 		Central.add(pieBotones);
