@@ -32,6 +32,7 @@ import Datos.DatoAjustes;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
+import javax.swing.UIManager;
 
 public class Ajustes extends JFrame {
 
@@ -51,6 +52,7 @@ public class Ajustes extends JFrame {
 	public Ajustes() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, config.getrAncho(), config.getrAlto());
+		setResizable(false); 
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -79,10 +81,13 @@ public class Ajustes extends JFrame {
 		Central.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JPanel panelMusica = new JPanel();
+		panelMusica.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panelMusica.setBackground(Color.WHITE);
 		Central.add(panelMusica);
+		panelMusica.setLayout(new BoxLayout(panelMusica, BoxLayout.Y_AXIS));
 		
 		JLabel labelMusica = new JLabel("Musica");
+		labelMusica.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panelMusica.add(labelMusica);
 		
 		 sliderMusica = new JSlider();
@@ -93,6 +98,7 @@ public class Ajustes extends JFrame {
 		panelMusica.add(sliderMusica);
 		
 		JButton muteMusica = new JButton("Silenciar");
+		muteMusica.setAlignmentX(Component.CENTER_ALIGNMENT);
 		muteMusica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Silenciar musica
@@ -103,10 +109,13 @@ public class Ajustes extends JFrame {
 		panelMusica.add(muteMusica);
 		
 		JPanel panelSonido = new JPanel();
+		panelSonido.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panelSonido.setBackground(Color.WHITE);
 		Central.add(panelSonido);
+		panelSonido.setLayout(new BoxLayout(panelSonido, BoxLayout.Y_AXIS));
 		
 		JLabel labelSonidos = new JLabel("Sonidos");
+		labelSonidos.setAlignmentX(Component.CENTER_ALIGNMENT);
 		labelSonidos.setBackground(Color.WHITE);
 		panelSonido.add(labelSonidos);
 		
@@ -117,6 +126,7 @@ public class Ajustes extends JFrame {
 		panelSonido.add(sliderSonidos);
 		
 		JButton muteSonidos = new JButton("Silenciar");
+		muteSonidos.setAlignmentX(0.5f);
 		muteSonidos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Silenciar Sonidos
@@ -127,14 +137,18 @@ public class Ajustes extends JFrame {
 		panelSonido.add(muteSonidos);
 		
 		JPanel panelResolucion = new JPanel();
+		panelResolucion.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panelResolucion.setBackground(Color.WHITE);
 		Central.add(panelResolucion);
+		panelResolucion.setLayout(new BoxLayout(panelResolucion, BoxLayout.Y_AXIS));
 		
 		JLabel labelResolucion = new JLabel("Resolucion de pantalla");
+		labelResolucion.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panelResolucion.add(labelResolucion);
 		
 		JPanel panelMedidas = new JPanel();
 		panelResolucion.add(panelMedidas);
+		panelMedidas.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel labelAlto = new JLabel("Alto");
 		panelMedidas.add(labelAlto);
@@ -151,10 +165,13 @@ public class Ajustes extends JFrame {
 		panelMedidas.add(spinAncho);
 		
 		JPanel panelDificultad = new JPanel();
+		panelDificultad.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panelDificultad.setBackground(Color.WHITE);
 		Central.add(panelDificultad);
+		panelDificultad.setLayout(new BoxLayout(panelDificultad, BoxLayout.Y_AXIS));
 		
 		JLabel labelDificultad = new JLabel("Nivel de Mates");
+		labelDificultad.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panelDificultad.add(labelDificultad);
 		
 		nivelMates = new JComboBox();
@@ -162,12 +179,16 @@ public class Ajustes extends JFrame {
 		labelDificultad.setLabelFor(nivelMates);
 		panelDificultad.add(nivelMates);
 		
-		JPanel panelVacio2 = new JPanel();
-		panelVacio2.setBackground(Color.WHITE);
-		Central.add(panelVacio2);
+		JPanel panelVolver = new JPanel();
+		panelVolver.setBorder(new EmptyBorder(5, 5, 5, 5));
+		panelVolver.setBackground(Color.WHITE);
+		Central.add(panelVolver);
+		panelVolver.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton volverAjustes = new JButton("Volver");
-		panelVacio2.add(volverAjustes);
+		volverAjustes.setAlignmentX(Component.CENTER_ALIGNMENT);
+		volverAjustes.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+		panelVolver.add(volverAjustes);
 		volverAjustes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -176,6 +197,7 @@ public class Ajustes extends JFrame {
 		});
 		
 		JPanel pieBotones = new JPanel();
+		pieBotones.setBorder(new EmptyBorder(5, 5, 5, 5));
 		pieBotones.setBackground(Color.WHITE);
 		Central.add(pieBotones);
 		
