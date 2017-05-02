@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class Principal extends JFrame {
 
@@ -34,29 +36,20 @@ public class Principal extends JFrame {
 		JLabel lblNewLabel = new JLabel("COMPARTIR");
 		panel.add(lblNewLabel);
 		
-		JSeparator separator_3 = new JSeparator();
-		panel.add(separator_3);
-		
-		JSeparator separator = new JSeparator();
-		panel.add(separator);
+		Component horizontalStrut_3 = Box.createHorizontalStrut(20);
+		panel.add(horizontalStrut_3);
 		
 		JLabel lblPuntuaciones = new JLabel("PUNTUACIONES");
 		panel.add(lblPuntuaciones);
 		
-		JSeparator separator_2 = new JSeparator();
-		panel.add(separator_2);
-		
-		JSeparator separator_4 = new JSeparator();
-		panel.add(separator_4);
+		Component horizontalStrut_1 = Box.createHorizontalStrut(40);
+		panel.add(horizontalStrut_1);
 		
 		JButton btnJugar = new JButton("JUGAR");
 		panel.add(btnJugar);
 		
-		JSeparator separator_5 = new JSeparator();
-		panel.add(separator_5);
-		
-		JSeparator separator_1 = new JSeparator();
-		panel.add(separator_1);
+		Component horizontalStrut = Box.createHorizontalStrut(20);
+		panel.add(horizontalStrut);
 		
 		JLabel lblNewLabel_1 = new JLabel("AJUSTES");
 		panel.add(lblNewLabel_1);
