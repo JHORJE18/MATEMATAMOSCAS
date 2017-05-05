@@ -19,7 +19,7 @@ public class RegistrosTest {
 	}
 	
 	@Test
-	public void testContraseña() {
+	public void testContrasena() {
 		Registro r = new Registro();
 		assertTrue(r.contrasenaValida("hola001"));
 	}
